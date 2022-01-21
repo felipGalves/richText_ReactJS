@@ -16,17 +16,57 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+// Select 
+import Select from 'react-select';
+
+// Opções select
+const options = [
+  { value: 'Paragraph', label: 'Paragraph' },
+  { value: 'Heading3', label: 'Heading 3' },
+  { value: 'Heading2', label: 'Heading 2' },
+  { value: 'Heading1', label: 'Heading 1' }
+]
+
 function App() {
+ function onSelectChange({ value }) {
+    console.log(value)
+
+    switch (value) {
+      case 'Paragraph':
+        document.execCommand('formatBlock', false, 'p'); 
+          break;
+      case 'Heading3':
+        document.execCommand('formatBlock', false, '<h3>'); 
+          break;
+      case 'Heading2':
+          document.execCommand('formatBlock', false, '<h2>'); 
+        break;
+      case 'Heading1':
+          document.execCommand('formatBlock', false, '<h1>'); 
+        break;
+      default:
+          document.execCommand('formatBlock', false, 'p'); 
+        break;
+    }
+  };
+
   return (
     <div className='container'>
+        <Button />
         <div className="content">
           {/* Toolbar */}
           <section className='toolbar'>
-          <button 
-              onClick={e => document.execCommand('formatBlock', false, '<h1>')}
-            >
-              <FontAwesomeIcon icon={faHeading} />
-            </button>
+            <Select  
+              onChange={onSelectChange}
+              defaultValue={options[0]}
+              isDisabled={false}
+              isLoading={false}
+              isClearable={false}
+              isRtl={false}
+              isSearchable={true}
+              name="Heading"
+              options={options} 
+            />
 
             <button 
               onClick={e => document.execCommand("bold", false, null)}
@@ -87,16 +127,10 @@ function App() {
             >
               <FontAwesomeIcon icon={faAlignJustify} />
             </button>
-
-            <button 
-              onClick={e => document.execCommand("insertImage", false, null)}
-            >
-              <FontAwesomeIcon icon={faImage} />
-            </button>
           </section>
 
           {/* Title */}
-          <section className='textContainer' contentEditable='true'>
+          <section id='content' className='textContainer' contentEditable='true'>
 
           </section>
         </div>

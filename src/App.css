@@ -46,6 +46,10 @@ body, input, button {
 
 /* toolbar */
 
+.toolbar {
+    display: flex;
+}
+
 .toolbar button {
     border: none;
     background: none;
@@ -54,6 +58,27 @@ body, input, button {
     font-size: 16px;
     color: rgb(19, 19, 19);
     cursor: pointer;
+}
+
+.toolbar .css-b62m3t-container {
+    width: 110px;
+}
+
+.toolbar .css-1s2u09g-control {
+    border: none;
+}
+
+.toolbar .css-1pahdxg-control {
+    border: none;
+    box-shadow: none;
+}
+
+.toolbar .css-1pahdxg-control:hover {
+    border: none;
+}
+
+.toolbar .css-1okebmr-indicatorSeparator {
+    display: none;
 }
 
 section.textContainer {
